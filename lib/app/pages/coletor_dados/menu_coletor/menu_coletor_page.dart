@@ -1,0 +1,128 @@
+// ignore_for_file: deprecated_member_use
+
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:byte_super_app/app/core/ui/widgets/application_responsive_widget.dart';
+import 'package:byte_super_app/app/core/ui/widgets/pdv_appbar.dart';
+import 'package:byte_super_app/app/pages/home/widgets/dashboard_tile_widget.dart';
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import './menu_coletor_controller.dart';
+
+class MenuColetorPage extends GetView<MenuColetorController> {
+  const MenuColetorPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    ApplicationResponsiveWidget responsive =
+        ApplicationResponsiveWidget(context);
+
+    return WillPopScope(
+      onWillPop: () async {
+        Get.offAllNamed('/home');
+        return true;
+      },
+      child: Scaffold(
+        appBar: PdvAppbar(
+          titulo: const Text(
+            'Coletor de dados',
+          ),
+          remove: true,
+        ),
+        body: Center(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              DashBoardTileWIdget(
+                width: responsive.widthPercentual(35),
+                label: 'Conferência',
+                labelSize: 18,
+                color: Colors.green[800]!,
+                icon: Icons.barcode_reader,
+                iconSize: responsive.diagonalPercentual(7),
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                onTap: () {
+                  Get.toNamed('/coletor_dados/cadastro_prod_coletor');
+                },
+              ),
+              // PdvButtonBlueWidget(
+              //     onPressed: () async {
+              //       Get.toNamed('/coletor_dados/cadastro_prod_coletor');
+              //     },
+              //     icon: Icons.barcode_reader,
+              //     label: 'Iniciar leitura',
+              //     size: 16,
+              //     color: Colors.green[700]!.withAlpha(150),
+              //     textColor: Colors.white),
+              const SizedBox(
+                height: 20,
+              ),
+              DashBoardTileWIdget(
+                width: responsive.widthPercentual(35),
+                label: 'Visualizar lista',
+                labelSize: 18,
+                color: Colors.green[800]!,
+                icon: Icons.list_alt,
+                iconSize: responsive.diagonalPercentual(7),
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                onTap: () {
+                  Get.toNamed('/coletor_dados/lista_coletor');
+                },
+              ),
+              // PdvButtonBlueWidget(
+              //     onPressed: () {
+              //       Get.toNamed('/coletor_dados/lista_coletor');
+              //     },
+              //     icon: Icons.list_alt,
+              //     label: 'Visualizar lista',
+              //     size: 16,
+              //     color: Colors.green[700]!.withAlpha(150),
+              //     textColor: Colors.white),
+              const SizedBox(
+                height: 20,
+              ),
+              DashBoardTileWIdget(
+                width: responsive.widthPercentual(35),
+                label: 'Transmitir dados',
+                labelSize: 18,
+                color: Colors.green[800]!,
+                icon: Icons.send_and_archive,
+                iconSize: responsive.diagonalPercentual(7),
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                onTap: () async {
+                  String result = await controller.enviaColetor();
+                  if (result == 'OK') {
+                    AwesomeDialog(
+                      context: context,
+                      animType: AnimType.leftSlide,
+                      headerAnimationLoop: false,
+                      dialogType: DialogType.success,
+                      showCloseIcon: true,
+                      title: 'Aviso',
+                      desc: 'Dados enviados com sucesso!',
+                    ).show();
+
+                    await Future.delayed(const Duration(seconds: 2)).then(
+                      (value) {
+                        Get.offAndToNamed('/home');
+                      },
+                    );
+                    // Get.offAndToNamed('/home');
+                  }
+                },
+              ),
+              // PdvButtonBlueWidget(
+              //     onPressed: () {},
+              //     icon: Icons.send_and_archive,
+              //     label: 'Transmitir dados',
+              //     size: 16,
+              //     color: Colors.green[700]!.withAlpha(150),
+              //     textColor: Colors.white),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
