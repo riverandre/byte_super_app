@@ -48,9 +48,17 @@ class _CadastroProdColetorPageState extends PdvStateColetor<
                     padding: const EdgeInsets.only(top: 100.0),
                     child: Visibility(
                         visible: controller.codBar.value.isEmpty,
-                        child: LoadingAnimationWidget.inkDrop(
-                          color: Colors.blueAccent,
-                          size: 50,
+                        child: Column(
+                          children: [
+                            const Text('Buscando produto na base de dados'),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            LoadingAnimationWidget.inkDrop(
+                              color: Colors.blueAccent,
+                              size: 50,
+                            ),
+                          ],
                         )),
                   )),
               Obx(() {

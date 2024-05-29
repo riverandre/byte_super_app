@@ -21,8 +21,8 @@ class ConfiguracaoPage extends GetView<ConfiguracaoController> {
         logOut: false,
         onPressDelete: () {
           controller.ipExternoEC.text = '';
-          controller.ipInternoEC.text = '';
-          controller.portaEC.text = '';
+          controller.ipInternoEC.text = '3.88.39.18';
+          controller.portaEC.text = '32001';
         },
       ),
       body: SingleChildScrollView(
