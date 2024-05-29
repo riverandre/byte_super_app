@@ -36,6 +36,7 @@ class ByteSuperApp extends StatelessWidget {
       initialBinding: ApplicationBinding(),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: const [Locale('pt', 'BR')],

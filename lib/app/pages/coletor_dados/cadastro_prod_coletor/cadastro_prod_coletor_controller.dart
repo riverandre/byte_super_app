@@ -4,8 +4,10 @@ import 'package:byte_super_app/app/core/exceptions/repository_exception.dart';
 import 'package:byte_super_app/app/core/mixins/loader_mixin.dart';
 import 'package:byte_super_app/app/core/mixins/messages_mixin.dart';
 import 'package:byte_super_app/app/models/coletor/produto_coletor_model.dart';
+import 'package:byte_super_app/app/pages/coletor_dados/cadastro_prod_coletor/scanner_controller/barcode_scanner_window.dart';
 import 'package:byte_super_app/app/repositories/coletor_dados/coletor_dados_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class CadastroProdColetorController extends GetxController
@@ -22,7 +24,6 @@ class CadastroProdColetorController extends GetxController
   final _message = Rxn<MessageModel>();
   final qtdProduto = 1.00.obs;
   final valorQtdEC = TextEditingController();
-  final verificando = false.obs;
   final codBar = ''.obs;
 
   @override
@@ -65,6 +66,25 @@ class CadastroProdColetorController extends GetxController
     } catch (e, s) {
       log('Erro ao buscar registro', error: e, stackTrace: s);
       throw RepositoryException(message: 'Erro ao buscar registro');
+    }
+  }
+
+  Future<void> getCodBar() async {
+    var res = await Get.to(() => const BarcodeScannerWithScanWindow());
+    // var res = await Get.to(const SimpleBarcodeScannerPage());
+    // log(res.toString());
+    if (res != '-1') {
+      if (res.isNotEmpty) {
+        String check = await checkCodBarras(res);
+
+        if (check == 'OK') {
+          codBar.value = res;
+        } else {
+          Get.offAndToNamed('/coletor_dados/menu_coletor');
+        }
+      }
+    } else {
+      Get.offAndToNamed('/coletor_dados/menu_coletor');
     }
   }
 }

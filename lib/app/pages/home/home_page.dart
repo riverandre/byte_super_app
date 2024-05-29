@@ -71,6 +71,7 @@ class HomePage extends GetView<HomeController> {
                             onTap: () {
                               showDialog(
                                   context: context,
+                                  barrierDismissible: false,
                                   builder: (_) {
                                     return Dialog(
                                       child: Container(

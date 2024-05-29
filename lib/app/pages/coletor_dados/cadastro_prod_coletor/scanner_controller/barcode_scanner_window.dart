@@ -8,7 +8,9 @@ import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class BarcodeScannerWithScanWindow extends StatefulWidget {
-  const BarcodeScannerWithScanWindow({super.key});
+  const BarcodeScannerWithScanWindow({
+    super.key,
+  });
 
   @override
   State<BarcodeScannerWithScanWindow> createState() =>
@@ -122,7 +124,9 @@ class _BarcodeScannerWithScanWindowState
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 height: 100,
                 color: Colors.black.withOpacity(0.4),
-                child: ScannedBarcodeLabel(barcodes: controller.barcodes),
+                child: ScannedBarcodeLabel(
+                  barcodes: controller.barcodes,
+                ),
               ),
             ),
           ],

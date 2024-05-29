@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:byte_super_app/app/core/ui/widgets/pdv_button_widget.dart';
 import 'package:byte_super_app/app/core/ui/widgets/pdv_textformfield.dart';
 import 'package:flutter/material.dart';
@@ -5,12 +7,12 @@ import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScannedBarcodeLabel extends StatefulWidget {
+  final Stream<BarcodeCapture> barcodes;
+
   const ScannedBarcodeLabel({
     super.key,
     required this.barcodes,
   });
-
-  final Stream<BarcodeCapture> barcodes;
 
   @override
   State<ScannedBarcodeLabel> createState() => _ScannedBarcodeLabelState();
@@ -83,16 +85,12 @@ class _ScannedBarcodeLabelState extends State<ScannedBarcodeLabel> {
               },
               label: 'digitar código de barras');
         } else {
-          // Get.back(result: scannedBarcodes.first.displayValue);
-          Navigator.pop(context, scannedBarcodes.first.displayValue);
+          log(scannedBarcodes.first.displayValue.toString());
+
+          Navigator.pop(context, scannedBarcodes.first.displayValue!);
+
           return const SizedBox();
         }
-
-        // return Text(
-        //   scannedBarcodes.first.displayValue ?? 'No display value.',
-        //   overflow: TextOverflow.fade,
-        //   style: const TextStyle(color: Colors.white),
-        // );
       },
     );
   }
