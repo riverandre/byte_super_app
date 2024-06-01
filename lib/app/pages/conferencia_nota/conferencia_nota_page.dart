@@ -21,6 +21,9 @@ class ConferenciaNotaPage extends GetView<ConferenciaNotaController> {
         title: Obx(() {
           return Text(
             controller.titleAppBar.value,
+            style: const TextStyle(
+              color: Colors.white,
+            ),
           );
         }),
         actions: [

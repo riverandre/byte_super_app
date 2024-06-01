@@ -19,8 +19,8 @@ class ProdutoColetorModel {
 
   factory ProdutoColetorModel.fromMap(Map<String, dynamic> map) {
     return ProdutoColetorModel(
-      id: map['id'] as int,
-      codBarras: map['COD_BARRAS'] as String,
+      id: map['id'] ?? 0,
+      codBarras: map['COD_BARRAS'] ?? '',
     );
   }
 

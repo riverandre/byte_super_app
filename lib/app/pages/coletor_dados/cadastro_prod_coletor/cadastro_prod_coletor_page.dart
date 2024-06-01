@@ -41,7 +41,9 @@ class _CadastroProdColetorPageState extends PdvStateColetor<
         remove: true,
       ),
       body: SingleChildScrollView(
-        child: Center(
+        child: Container(
+          color: Colors.white,
+          alignment: Alignment.center,
           child: Column(
             children: [
               Obx(() => Padding(
@@ -232,9 +234,9 @@ class _CadastroProdColetorPageState extends PdvStateColetor<
                                                   controller.codBar.value);
 
                                           Future.delayed(const Duration(
-                                                  milliseconds: 150))
-                                              .then((value) async {
-                                            await controller.getCodBar();
+                                                  milliseconds: 250))
+                                              .then((value) {
+                                            controller.getCodBar();
                                           });
                                         },
                                         style: ButtonStyle(

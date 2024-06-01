@@ -25,6 +25,9 @@ class MenuColetorPage extends GetView<MenuColetorController> {
         appBar: PdvAppbar(
           titulo: const Text(
             'Coletor de dados',
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
           remove: true,
         ),
@@ -87,7 +90,7 @@ class MenuColetorPage extends GetView<MenuColetorController> {
                 label: 'Transmitir dados',
                 labelSize: 18,
                 color: Colors.green[800]!,
-                icon: Icons.send_and_archive,
+                icon: Icons.send_to_mobile,
                 iconSize: responsive.diagonalPercentual(7),
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
                 onTap: () async {
@@ -103,13 +106,23 @@ class MenuColetorPage extends GetView<MenuColetorController> {
                       desc: 'Dados enviados com sucesso!',
                     ).show();
 
-                    await Future.delayed(const Duration(seconds: 2)).then(
-                      (value) {
-                        Get.offAndToNamed('/home');
-                      },
-                    );
                     // Get.offAndToNamed('/home');
+                  } else {
+                    AwesomeDialog(
+                      context: context,
+                      animType: AnimType.leftSlide,
+                      headerAnimationLoop: false,
+                      dialogType: DialogType.info,
+                      showCloseIcon: true,
+                      title: 'Aviso',
+                      desc: 'Nenhum registro para enviar!',
+                    ).show();
                   }
+                  await Future.delayed(const Duration(seconds: 2)).then(
+                    (value) {
+                      Get.offAndToNamed('/home');
+                    },
+                  );
                 },
               ),
               // PdvButtonBlueWidget(

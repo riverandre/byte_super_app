@@ -16,6 +16,9 @@ class ListaColetorPage extends GetView<ListaColetorController> {
       appBar: AppBar(
         title: const Text(
           'Lista de Produtos',
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
         toolbarHeight: 50,
         elevation: 2,

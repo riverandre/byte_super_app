@@ -18,6 +18,9 @@ class NotasEntradaPage extends GetView<NotasEntradaController> {
         titulo: Obx(() {
           return Text(
             controller.titleAppBar.value,
+            style: const TextStyle(
+              color: Colors.white,
+            ),
           );
         }),
         remove: true,

@@ -9,6 +9,7 @@ import 'package:byte_super_app/app/models/coletor/coletor_dados_model.dart';
 import 'package:byte_super_app/app/models/coletor/produto_coletor_model.dart';
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'coletor_dados_repository.dart';
 
@@ -23,10 +24,12 @@ class ColetorDadosRepositoryImpl implements ColetorDadosRepository {
         _dio = dio;
 
   @override
-  Future<void> deleteProdColetor() async {
+  Future<String> deleteProdColetor() async {
     try {
       final conn = await _sqliteConnectionFactory.openConnection();
       conn.delete('PRODUTO_COLETOR');
+
+      return 'OK';
     } on Exception catch (e, s) {
       log('ERRO ', error: e, stackTrace: s);
       throw RepositoryException(message: 'Erro ao deletar');
@@ -36,25 +39,20 @@ class ColetorDadosRepositoryImpl implements ColetorDadosRepository {
   @override
   Future<String> getAndInsertProdutos(String url) async {
     try {
+      final conn = await _sqliteConnectionFactory.openConnection();
       Response result = await _dio.get('$url/produto/gtins');
       if (result.statusCode == 200) {
-        var produtos = result.data;
+        List prodColetor = result.data;
 
-        final conn = await _sqliteConnectionFactory.openConnection();
-        for (var element in produtos) {
-          // await conn.transaction(
-          //   (txn) => txn.insert(
-          //     'PRODUTO_COLETOR',
-          //     {
-          //       'COD_BARRAS': element,
-          //     },
-          //   ),
-          // );
-          conn.insert('PRODUTO_COLETOR', {
-            'COD_BARRAS': element,
-          });
+        for (String element in prodColetor) {
+          await conn.insert(
+            'PRODUTO_COLETOR',
+            {
+              'COD_BARRAS': element,
+            },
+            conflictAlgorithm: ConflictAlgorithm.replace,
+          );
         }
-        // _sqliteConnectionFactory.closeConnection();
         return 'OK';
       } else {
         return 'ERRO';

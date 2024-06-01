@@ -10,7 +10,7 @@ abstract class ColetorDadosRepository {
 
   Future<void> updateColetor(String codBarras, double qtdd);
 
-  Future<void> deleteProdColetor();
+  Future<String> deleteProdColetor();
 
   Future<void> deleteProdListColetor(ColetorDadosModel prodColetor);
 

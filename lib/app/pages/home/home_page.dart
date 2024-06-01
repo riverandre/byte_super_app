@@ -24,7 +24,12 @@ class HomePage extends GetView<HomeController> {
       child: Scaffold(
         appBar: PdvAppbar(
           titulo: Obx(() {
-            return Text(controller.titleAppBar.value);
+            return Text(
+              controller.titleAppBar.value,
+              style: const TextStyle(
+                color: Colors.white,
+              ),
+            );
           }),
           logOut: true,
         ),
@@ -35,7 +40,7 @@ class HomePage extends GetView<HomeController> {
             children: [
               Expanded(
                   child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -68,7 +73,7 @@ class HomePage extends GetView<HomeController> {
                             iconSize: responsive.diagonalPercentual(8),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(20)),
-                            onTap: () {
+                            onTap: () async {
                               showDialog(
                                   context: context,
                                   barrierDismissible: false,
@@ -109,12 +114,12 @@ class HomePage extends GetView<HomeController> {
                                       ),
                                     );
                                   });
-                              controller.sincronizaProdutos();
-                              Future.delayed(const Duration(seconds: 7))
-                                  .then((value) {
+                              String value =
+                                  await controller.sincronizaProdutos();
+                              if (value == 'OK') {
                                 Get.back();
                                 Get.toNamed('/coletor_dados/menu_coletor');
-                              });
+                              }
                             },
                           ),
                         ],

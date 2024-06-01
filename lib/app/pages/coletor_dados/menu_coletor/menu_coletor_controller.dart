@@ -51,11 +51,15 @@ class MenuColetorController extends GetxController
       if (value == 'OK') {
         int userId = int.parse(GetStorage().read(Constants.USER_ID));
         final coletorDados = await _coletorDadosRepository.findAllColetor();
-        final String retorno =
-            await _coletorDadosRepository.send(url, coletorDados, userId);
-        if (retorno == 'OK') {
-          await _coletorDadosRepository.updateColetorStatusEnviado();
-          _loading.toggle();
+        if (coletorDados.isNotEmpty) {
+          final String retorno =
+              await _coletorDadosRepository.send(url, coletorDados, userId);
+          if (retorno == 'OK') {
+            await _coletorDadosRepository.updateColetorStatusEnviado();
+            _loading.toggle();
+          }
+        } else {
+          value = 'SEM REGISTRO';
         }
       }
       return value;

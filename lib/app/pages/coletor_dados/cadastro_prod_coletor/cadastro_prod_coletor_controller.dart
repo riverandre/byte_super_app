@@ -62,7 +62,7 @@ class CadastroProdColetorController extends GetxController
           codBarras, qtdProdutoColetor + qtdProduto.value);
       valorQtdEC.text = '';
       qtdProduto.value = 1.00;
-      Get.back();
+      // Get.back();
     } catch (e, s) {
       log('Erro ao buscar registro', error: e, stackTrace: s);
       throw RepositoryException(message: 'Erro ao buscar registro');

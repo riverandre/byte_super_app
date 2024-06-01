@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:byte_super_app/app/core/ui/widgets/pdv_button_widget.dart';
 import 'package:byte_super_app/app/core/ui/widgets/pdv_textformfield.dart';
 import 'package:flutter/material.dart';
@@ -7,11 +5,13 @@ import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScannedBarcodeLabel extends StatefulWidget {
-  final Stream<BarcodeCapture> barcodes;
+  final MobileScannerController controller;
+  // final Stream<BarcodeCapture> barcodes;
 
   const ScannedBarcodeLabel({
     super.key,
-    required this.barcodes,
+    // required this.barcodes,
+    required this.controller,
   });
 
   @override
@@ -19,12 +19,26 @@ class ScannedBarcodeLabel extends StatefulWidget {
 }
 
 class _ScannedBarcodeLabelState extends State<ScannedBarcodeLabel> {
+  Stream<BarcodeCapture>? barcodes;
+
+  @override
+  void initState() {
+    super.initState();
+    barcodes = widget.controller.barcodes;
+  }
+
+  @override
+  void dispose() {
+    widget.controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final codBarEC = TextEditingController();
 
     return StreamBuilder(
-      stream: widget.barcodes,
+      stream: barcodes,
       builder: (context, snapshot) {
         final scannedBarcodes = snapshot.data?.barcodes ?? [];
 
@@ -69,8 +83,11 @@ class _ScannedBarcodeLabelState extends State<ScannedBarcodeLabel> {
                               ),
                               PdvButtonWidget(
                                   onPressed: () {
-                                    Get.back();
-                                    Navigator.pop(context, codBarEC.text);
+                                    WidgetsBinding.instance
+                                        .addPostFrameCallback((_) async {
+                                      await widget.controller.stop();
+                                      Get.back(result: codBarEC.text);
+                                    });
                                   },
                                   color: Colors.blueAccent,
                                   colorText: Colors.white,
@@ -85,10 +102,11 @@ class _ScannedBarcodeLabelState extends State<ScannedBarcodeLabel> {
               },
               label: 'digitar código de barras');
         } else {
-          log(scannedBarcodes.first.displayValue.toString());
-
-          Navigator.pop(context, scannedBarcodes.first.displayValue!);
-
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            await widget.controller.stop();
+            // Get.back(result: scannedBarcodes.first.displayValue!);
+            Navigator.pop(context, scannedBarcodes.first.displayValue!);
+          });
           return const SizedBox();
         }
       },
