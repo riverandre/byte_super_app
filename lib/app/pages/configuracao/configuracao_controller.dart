@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:byte_super_app/app/core/exceptions/repository_exception.dart';
 import 'package:byte_super_app/app/core/mixins/loader_mixin.dart';
 import 'package:byte_super_app/app/core/mixins/messages_mixin.dart';
-import 'package:byte_super_app/app/models/configuracao_model.dart';
+import 'package:byte_super_app/app/models/configuracao/configuracao_model.dart';
 import 'package:byte_super_app/app/repositories/configuracao/configuracao_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

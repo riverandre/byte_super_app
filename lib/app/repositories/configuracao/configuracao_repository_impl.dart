@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 
-import 'package:byte_super_app/app/models/configuracao_model.dart';
+import 'package:byte_super_app/app/models/configuracao/configuracao_model.dart';
 import 'package:dio/dio.dart';
 
 import '../../core/database/sqlite_connection_factory.dart';

@@ -1,6 +1,6 @@
 import 'package:byte_super_app/app/core/ui/pdv_state.dart';
 import 'package:byte_super_app/app/models/conferencia/item_nota_entrada_model.dart';
-import 'package:byte_super_app/app/pages/coletor_dados/cadastro_prod_coletor/scanner_controller/barcode_scanner_window.dart';
+import 'package:byte_super_app/app/core/ui/widgets/scanner_controller/barcode_scanner_window.dart';
 import 'package:byte_super_app/app/pages/notas_entrada/pendente/notas_entrada_pendente_bindings.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

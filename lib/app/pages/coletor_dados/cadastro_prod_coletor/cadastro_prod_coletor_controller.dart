@@ -4,7 +4,7 @@ import 'package:byte_super_app/app/core/exceptions/repository_exception.dart';
 import 'package:byte_super_app/app/core/mixins/loader_mixin.dart';
 import 'package:byte_super_app/app/core/mixins/messages_mixin.dart';
 import 'package:byte_super_app/app/models/coletor/produto_coletor_model.dart';
-import 'package:byte_super_app/app/pages/coletor_dados/cadastro_prod_coletor/scanner_controller/barcode_scanner_window.dart';
+import 'package:byte_super_app/app/core/ui/widgets/scanner_controller/barcode_scanner_window.dart';
 import 'package:byte_super_app/app/repositories/coletor_dados/coletor_dados_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

@@ -1,7 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:byte_super_app/app/pages/coletor_dados/cadastro_prod_coletor/scanner_controller/scanned_barcode_label.dart';
-import 'package:byte_super_app/app/pages/coletor_dados/cadastro_prod_coletor/scanner_controller/scanner_error_widget.dart';
+import 'package:byte_super_app/app/core/ui/widgets/scanner_controller/scanned_barcode_label.dart';
+import 'package:byte_super_app/app/core/ui/widgets/scanner_controller/scanner_error_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -92,6 +92,7 @@ class _BarcodeScannerWithScanWindowState
 
     return WillPopScope(
       onWillPop: () async {
+        Get.back();
         Get.back();
         return true;
       },

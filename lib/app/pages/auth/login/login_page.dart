@@ -16,10 +16,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends PdvState<LoginPage, LoginController> {
   final _formKey = GlobalKey<FormState>();
-  // final _usuario = TextEditingController();
-  // final _senha = TextEditingController();
-  final _usuario = TextEditingController(text: '10');
-  final _senha = TextEditingController(text: '091170');
+  final _usuario = TextEditingController();
+  final _senha = TextEditingController();
+  // final _usuario = TextEditingController(text: '10');
+  // final _senha = TextEditingController(text: '091170');
 
   @override
   void dispose() {

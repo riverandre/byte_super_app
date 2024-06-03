@@ -1,4 +1,4 @@
-import 'package:byte_super_app/app/models/configuracao_model.dart';
+import 'package:byte_super_app/app/models/configuracao/configuracao_model.dart';
 
 abstract class ConfiguracaoRepository {
   Future<int> insert(ConfiguracaoModel configuracao);
