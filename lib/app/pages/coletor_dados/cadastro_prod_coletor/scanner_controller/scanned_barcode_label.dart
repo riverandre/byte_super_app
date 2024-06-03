@@ -87,6 +87,7 @@ class _ScannedBarcodeLabelState extends State<ScannedBarcodeLabel> {
                                         .addPostFrameCallback((_) async {
                                       await widget.controller.stop();
                                       Get.back(result: codBarEC.text);
+                                      Get.back(result: codBarEC.text);
                                     });
                                   },
                                   color: Colors.blueAccent,

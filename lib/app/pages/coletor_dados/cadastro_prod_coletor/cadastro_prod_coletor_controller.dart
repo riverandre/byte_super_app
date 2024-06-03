@@ -71,8 +71,7 @@ class CadastroProdColetorController extends GetxController
 
   Future<void> getCodBar() async {
     var res = await Get.to(() => const BarcodeScannerWithScanWindow());
-    // var res = await Get.to(const SimpleBarcodeScannerPage());
-    // log(res.toString());
+
     if (res != '-1') {
       if (res.isNotEmpty) {
         String check = await checkCodBarras(res);

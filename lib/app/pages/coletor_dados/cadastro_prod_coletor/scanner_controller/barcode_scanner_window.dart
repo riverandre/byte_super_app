@@ -92,7 +92,7 @@ class _BarcodeScannerWithScanWindowState
 
     return WillPopScope(
       onWillPop: () async {
-        Get.offAndToNamed('/coletor_dados/menu_coletor');
+        Get.back();
         return true;
       },
       child: Scaffold(

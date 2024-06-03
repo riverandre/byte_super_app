@@ -1,10 +1,10 @@
 import 'package:byte_super_app/app/core/ui/widgets/custom_dialog_produto.dart';
 import 'package:byte_super_app/app/models/conferencia/item_nota_entrada_model.dart';
+import 'package:byte_super_app/app/pages/coletor_dados/cadastro_prod_coletor/scanner_controller/barcode_scanner_window.dart';
 import 'package:byte_super_app/app/pages/conferencia_nota/widget/custom_dialog_confirm_send.dart';
 import 'package:byte_super_app/app/pages/conferencia_nota/widget/custom_dialog_remove.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 import './conferencia_nota_controller.dart';
 
 class ConferenciaNotaPage extends GetView<ConferenciaNotaController> {
@@ -315,12 +315,8 @@ class ConferenciaNotaPage extends GetView<ConferenciaNotaController> {
             child: FloatingActionButton(
               backgroundColor: Colors.blue,
               onPressed: () async {
-                var res = await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SimpleBarcodeScannerPage(),
-                    ));
-                // var res = '7890000000109';
+                var res =
+                    await Get.to(() => const BarcodeScannerWithScanWindow());
 
                 if (res != '-1') {
                   if (res.isNotEmpty) {

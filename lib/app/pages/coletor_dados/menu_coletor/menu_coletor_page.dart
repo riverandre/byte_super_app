@@ -49,15 +49,6 @@ class MenuColetorPage extends GetView<MenuColetorController> {
                   Get.toNamed('/coletor_dados/cadastro_prod_coletor');
                 },
               ),
-              // PdvButtonBlueWidget(
-              //     onPressed: () async {
-              //       Get.toNamed('/coletor_dados/cadastro_prod_coletor');
-              //     },
-              //     icon: Icons.barcode_reader,
-              //     label: 'Iniciar leitura',
-              //     size: 16,
-              //     color: Colors.green[700]!.withAlpha(150),
-              //     textColor: Colors.white),
               const SizedBox(
                 height: 20,
               ),
@@ -73,15 +64,6 @@ class MenuColetorPage extends GetView<MenuColetorController> {
                   Get.toNamed('/coletor_dados/lista_coletor');
                 },
               ),
-              // PdvButtonBlueWidget(
-              //     onPressed: () {
-              //       Get.toNamed('/coletor_dados/lista_coletor');
-              //     },
-              //     icon: Icons.list_alt,
-              //     label: 'Visualizar lista',
-              //     size: 16,
-              //     color: Colors.green[700]!.withAlpha(150),
-              //     textColor: Colors.white),
               const SizedBox(
                 height: 20,
               ),
@@ -106,7 +88,11 @@ class MenuColetorPage extends GetView<MenuColetorController> {
                       desc: 'Dados enviados com sucesso!',
                     ).show();
 
-                    // Get.offAndToNamed('/home');
+                    await Future.delayed(const Duration(seconds: 2)).then(
+                      (value) {
+                        Get.offAndToNamed('/home');
+                      },
+                    );
                   } else {
                     AwesomeDialog(
                       context: context,
@@ -117,21 +103,15 @@ class MenuColetorPage extends GetView<MenuColetorController> {
                       title: 'Aviso',
                       desc: 'Nenhum registro para enviar!',
                     ).show();
+
+                    await Future.delayed(const Duration(seconds: 2)).then(
+                      (value) {
+                        Get.back();
+                      },
+                    );
                   }
-                  await Future.delayed(const Duration(seconds: 2)).then(
-                    (value) {
-                      Get.offAndToNamed('/home');
-                    },
-                  );
                 },
               ),
-              // PdvButtonBlueWidget(
-              //     onPressed: () {},
-              //     icon: Icons.send_and_archive,
-              //     label: 'Transmitir dados',
-              //     size: 16,
-              //     color: Colors.green[700]!.withAlpha(150),
-              //     textColor: Colors.white),
             ],
           ),
         ),

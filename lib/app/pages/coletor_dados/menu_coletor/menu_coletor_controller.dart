@@ -56,23 +56,17 @@ class MenuColetorController extends GetxController
               await _coletorDadosRepository.send(url, coletorDados, userId);
           if (retorno == 'OK') {
             await _coletorDadosRepository.updateColetorStatusEnviado();
-            _loading.toggle();
           }
         } else {
           value = 'SEM REGISTRO';
         }
       }
+      _loading.toggle();
       return value;
     } catch (e, s) {
       _loading.toggle();
       log('Erro ao enviar dados do coletor', error: e, stackTrace: s);
       throw RepositoryException(message: 'Erro ao buscar registro');
-
-      // _message(MessageModel(
-      //   title: 'ERRO',
-      //   message: 'Erro ao dados do coletor',
-      //   type: MessageType.error,
-      // ));
     }
   }
 }
